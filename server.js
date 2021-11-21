@@ -33,7 +33,11 @@ app.get("/api/data", (req, res) => {
 
 app.post("/api/data", (req, res) => {
   const data = req.body;
-  if (data.temperature && data.date && data.userResponse) {
+  if (
+    data.hasOwnProperty("temperature") &&
+    data.hasOwnProperty("date") &&
+    data.hasOwnProperty("feelings")
+  ) {
     projectData = { ...data };
     console.log(projectData);
     res.status(200).send(projectData);
